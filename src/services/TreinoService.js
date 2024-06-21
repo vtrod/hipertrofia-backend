@@ -23,24 +23,30 @@ class TreinoService {
         row.quinta, 
         row.sexta, 
         row.sabado, 
-        row.domingo, 
-        row.obs
+        row.domingo 
     ));
     }
 
     //metodo post para gerar treino
-    static async createTreino(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo, obs) {
-      const result = await pool.query('INSERT INTO treinos (chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo, obs) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', 
-      [chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo, obs]);
+    static async createTreino(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo) {
+      const result = await pool.query('INSERT INTO treinos (chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', 
+      [chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo]);
       return result.rows[0];
     }
 
     //metodo para pegar treino por id
     static async getTreinoById(id) {
       const result = await pool.query('SELECT * FROM treinos WHERE chave = $1', [id]);
-      const { chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo, obs } = result.rows[0];
-      return new Treino(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo, obs);
+      const { chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo } = result.rows[0];
+      return new Treino(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo);
     }
+    
+    static async getTreinoByAlunoId(id) {
+      const result = await pool.query('SELECT * FROM alunos a LEFT JOIN treinos t ON a.chave_aluno = t.chave_aluno WHERE a.chave_aluno = $1', [id]);
+      const { chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo } = result.rows[0];
+      return new Treino(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo);
+    }
+
 
   }
   module.exports = TreinoService;

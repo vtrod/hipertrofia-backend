@@ -1,5 +1,5 @@
 class Treino {
-    constructor(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo, obs) {
+    constructor(chave_aluno, segunda, terca, quarta, quinta, sexta, sabado, domingo) {
       this.chave_aluno = chave_aluno;
       this.segunda = segunda;
       this.terca = terca;
@@ -8,7 +8,6 @@ class Treino {
       this.sexta = sexta;
       this.sabado = sabado;
       this.domingo = domingo;
-      this.obs = obs;
     }
   }
 

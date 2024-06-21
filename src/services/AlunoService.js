@@ -16,6 +16,7 @@ class AlunoService {
   static async getAluno() {
       const result = await pool.query('SELECT * FROM alunos');
       return result.rows.map(row => new Aluno(
+        row.chave_aluno,
         row.nome_aluno, 
         row.peso, 
         row.altura, 
@@ -39,8 +40,8 @@ class AlunoService {
         //metodo para pegar aluno por id
         static async getAlunoById(id) {
             const result = await pool.query('SELECT * FROM alunos WHERE chave_aluno = $1', [id]);
-            const { nome_aluno, peso, altura, sexo, nivel, idade, dias, horas, lesao, equipdisponivel, limitacao} = result.rows[0];
-            return new Aluno(nome_aluno, peso, altura, sexo, nivel, idade, dias, horas, lesao, equipdisponivel, limitacao);
+            const { chave_aluno, nome_aluno, peso, altura, sexo, nivel, idade, dias, horas, lesao, equipdisponivel, limitacao} = result.rows[0];
+            return new Aluno(chave_aluno, nome_aluno, peso, altura, sexo, nivel, idade, dias, horas, lesao, equipdisponivel, limitacao);
           }
 
   }

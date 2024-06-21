@@ -10,5 +10,6 @@ router.post('/treino', TreinoController.createTreino);
 router.post('/aluno', AlunoController.createAluno);
 router.get('/aluno', AlunoController.getAluno);
 router.get('/aluno/:id', AlunoController.getAlunoById);
+router.get('/alunotreino/:id', TreinoController.getTreinoByAlunoId);
 
 module.exports = router;
