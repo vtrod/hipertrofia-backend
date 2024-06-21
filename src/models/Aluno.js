@@ -1,5 +1,5 @@
 class Aluno {
-    constructor(chave_aluno, nome_aluno, peso, altura, sexo, nivel, idade, dias, horas, lesao, equipdisponivel, limitacao) {
+    constructor(chave_aluno, nome_aluno, peso, altura, sexo, nivel, idade, dias, horas, lesao, equipdisponivel, limitacao, peso1, peso2, peso3) {
       this.chave_aluno = chave_aluno;
       this.nome_aluno = nome_aluno;
       this.peso = peso;
@@ -12,6 +12,9 @@ class Aluno {
       this.lesao = lesao;
       this.equipdisponivel = equipdisponivel;
       this.limitacao = limitacao;
+      this.peso1 = peso1;
+      this.peso2 = peso2;
+      this.peso3 = peso3;
     }
   }
 
